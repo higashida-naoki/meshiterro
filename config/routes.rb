@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'post_images/new'
   get 'post_images/index'
-  get 'post/images/show'
+  get 'post_images/show'
   patch 'users/:id' => 'users#update', as: 'update_user'
 
   resources :post_images, only: [:new, :create, :index, :show, :destroy] do
-    resources :post_comments, only: [:create]
+    resource :favorite, only: [:create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
 
