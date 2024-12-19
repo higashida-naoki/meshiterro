@@ -7,9 +7,6 @@ has_many :favorites, dependent: :destroy
 
   validates :shop_name, presence: true
   validates :image, presence: true
-end
-
-
 
   def get_image
     unless image.attached?
@@ -22,3 +19,4 @@ end
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+end
